@@ -441,7 +441,8 @@ How about an actor that start sleeping, and keeps sleeping?
 (define-class <sleeper> (<actor>)
   (actions #:allocation #:each-subclass
            #:init-thunk (build-actions
-                         (*init* sleeper-loop))))
+                         (*init* sleeper-loop)))
+  (sleep-secs #:init-value 1 #:getter sleeper-sleep-secs))
 
 (define (sleeper-loop actor message)
   (while (actor-alive? actor)
