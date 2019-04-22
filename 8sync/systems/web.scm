@@ -1,5 +1,6 @@
 ;;; 8sync --- Asynchronous programming for Guile
 ;;; Copyright © 2017 Christopher Allan Webber <cwebber@dustycloud.org>
+;;; Copyright © 2019 Jan (janneke) Nieuwenhuizen <janneke@gnu.org>
 ;;;
 ;;; Code (also under the LGPL) borrowed from fibers:
 ;;;   Copyright © 2016 Andy Wingo <wingo@pobox.com>
@@ -32,6 +33,7 @@
   #:use-module (web server)
   #:use-module (rnrs io ports)
   #:use-module (8sync)
+  #:use-module ((srfi srfi-1) #:select (assoc))
   #:export (<web-server>
             ;; @@: If we don't want to import these because of
             ;;   "conflicts" with other objects, we could just
@@ -149,7 +151,7 @@ as we're alive."
   (let loop ((upgrades (request-upgrade request)))
     (if (eq? upgrades '())
         #f ; Shouldn't upgrade
-        (match (assoc (car upgrades) upgrade-paths)
+        (match (assoc (car upgrades) upgrade-paths string-ci=?)
           ;; Yes, upgrade with this method
           ((_ . upgrade-proc)
            upgrade-proc)
