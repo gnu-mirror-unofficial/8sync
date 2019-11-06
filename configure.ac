@@ -1,5 +1,7 @@
 AC_INIT([8sync], [0.4.2], [cwebber@dustycloud.org])
 
+AC_CANONICAL_HOST
+
 GUILE_PKG([3.0 2.2])
 guilemoduledir="${datarootdir}/guile/site/$GUILE_EFFECTIVE_VERSION"
 guileobjectdir="${libdir}/guile/$GUILE_EFFECTIVE_VERSION/site-ccache"
