@@ -1,5 +1,6 @@
 ;;; guile-websocket --- WebSocket client/server
 ;;; Copyright © 2015 David Thompson <davet@gnu.org>
+;;; Copyright © 2019 Rutger van Beusekom <rutger.van.beusekom@gmail.com>
 ;;;
 ;;; This file is part of guile-websocket.
 ;;;
@@ -309,7 +310,8 @@ MASKING-KEY."
 
     (let ((bv (get-bytevector-n port length)))
       (when masking-key
-        (mask-bytevector! bv masking-key))
+        (unless (eof-object? bv)
+          (mask-bytevector! bv masking-key)))
       bv))
 
   (let* ((type-byte (get-u8 port))
