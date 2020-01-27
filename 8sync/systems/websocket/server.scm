@@ -1,6 +1,7 @@
 ;;; guile-websocket --- WebSocket client/server
 ;;; Copyright © 2015 David Thompson <davet@gnu.org>
 ;;; Copyright © 2017 Christopher Allan Webber <cwebber@dustycloud.org>
+;;; Copyright © 2020 Jan (janneke) Nieuwenhuizen <janneke@gnu.org>
 ;;;
 ;;; This file is part of guile-websocket.
 ;;;
@@ -156,11 +157,11 @@ called for each complete message that is received."
           (loop fragments type))
          ((first-fragment-frame? frame) ; begin accumulating fragments
           (loop (list frame) (frame-type frame)))
+         ((fragment-frame? frame) ; add a fragment
+          (loop (cons frame fragments) type))
          ((final-fragment-frame? frame) ; concatenate all fragments
           (handle-data-frame type (frame-concatenate (reverse fragments)))
           (loop '() #f))
-         ((fragment-frame? frame) ; add a fragment
-          (loop (cons frame fragments) type))
          ((data-frame? frame) ; unfragmented data frame
           (handle-data-frame (frame-type frame) (frame-data frame))
           (loop '() #f)))))))
