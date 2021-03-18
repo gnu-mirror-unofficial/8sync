@@ -1,7 +1,7 @@
 ;;; guile-websocket --- WebSocket client/server
 ;;; Copyright © 2015 David Thompson <davet@gnu.org>
 ;;; Copyright © 2017 Christopher Allan Webber <cwebber@dustycloud.org>
-;;; Copyright © 2020 Jan (janneke) Nieuwenhuizen <janneke@gnu.org>
+;;; Copyright © 2020,2021 Jan (janneke) Nieuwenhuizen <janneke@gnu.org>
 ;;;
 ;;; This file is part of guile-websocket.
 ;;;
@@ -71,8 +71,7 @@ string."
   ((ws-send websocket-server-send))
   (upgrade-paths #:init-value `(("websocket" .
                                  ,(wrap-apply websocket-client-loop)))
-                 #:allocation #:each-subclass
-                 #:accessor .upgrade-paths)
+                 #:allocation #:each-subclass)
 
   (gen-client-id #:init-thunk make-simple-counter)
 
