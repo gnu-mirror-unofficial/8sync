@@ -1,5 +1,6 @@
 ;;; 8sync --- Asynchronous programming for Guile
 ;;; Copyright (C) 2015 Christopher Allan Webber <cwebber@dustycloud.org>
+;;; Copyright (C) 2021 Jan (janneke) Nieuwenhuizen <janneke@gnu.org>
 ;;;
 ;;; This library is free software; you can redistribute it and/or
 ;;; modify it under the terms of the GNU Lesser General Public
@@ -283,8 +284,6 @@
 
 ;; End tests
 
-(test-end "test-agenda")
-
 ;; @@: A better way to handle this at the repl?
 (test-exit)
-
+(test-end "test-agenda")

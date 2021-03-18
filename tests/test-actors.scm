@@ -1,5 +1,6 @@
 ;;; 8sync --- Asynchronous programming for Guile
 ;;; Copyright (C) 2016 Christopher Allan Webber <cwebber@dustycloud.org>
+;;; Copyright (C) 2021 Jan (janneke) Nieuwenhuizen <janneke@gnu.org>
 ;;;
 ;;; This file is part of 8sync.
 ;;;
@@ -203,5 +204,5 @@ customer> Whaaaaat?  I can't believe I got voice mail!\n"
  (test-equal (get-spoken)
    '("Hi! jack inits now.\n" "Hi! jill inits now.\n")))
 
-(test-end "test-actors")
 (test-exit)
+(test-end "test-actors")
